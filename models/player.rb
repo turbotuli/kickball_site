@@ -9,12 +9,12 @@ class Player
     @team = team
   end
 
-  def self.player_by_position(position)
+  def self.player_by_position(player_position)
     @players = []
-    TeamData::ROLL_CALL.each do | teams |
-      teams[1].each do | player |
-        if player[0].to_s == position
-          @players <<  Player.new(player[1],player[0],teams[0])
+    TeamData::ROLL_CALL.each do | team, players |
+      players.each do | position, player |
+        if position.to_s == player_position
+          @players <<  Player.new(player,position,team)
         end
       end
     end
@@ -23,9 +23,9 @@ class Player
 
   def self.all
     @all_players = []
-    TeamData::ROLL_CALL.each do | team |
-      team[1].each do | player |
-        @all_players <<  new(player[1],player[0],team[0])
+    TeamData::ROLL_CALL.each do | team, players |
+      players.each do | position, player |
+        @all_players <<  new(player,position,team)
       end
     end
     @all_players

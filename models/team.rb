@@ -20,12 +20,12 @@ class Team
     @name = name
   end
 
-  def self.players(team)
+  def self.players(team_name)
     @players = []
-    TeamData::ROLL_CALL.each do | teams |
-      if teams[0].to_s == team
-        teams[1].each do | player |
-          @players <<  Player.new(player[1],player[0],teams[0])
+    TeamData::ROLL_CALL.each do | team, players |
+      if team.to_s == team_name
+        players.each do | player, position |
+          @players <<  Player.new(player,position,team)
         end
       end
     end
@@ -34,8 +34,8 @@ class Team
 
   def self.all
     @team_names = []
-    TeamData::ROLL_CALL.each do | team |
-      @team_names << team[0]
+    TeamData::ROLL_CALL.each do | team, players |
+      @team_names << team
     end
     @team_names
   end

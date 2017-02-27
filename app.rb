@@ -11,7 +11,7 @@ get "/" do
     <body>
       <ul>
         <li><a href=/teams>Teams</a></li>
-        <li><a href=/players>Players</a></li>
+        <li><a href=/players>All League Players</a></li>
         <li><a href=/positions>Positions</a></li>
       </ul>
     </body>
@@ -27,7 +27,6 @@ end
 get "/teams/:team_name" do
     @players = Team.players(params[:team_name])
     erb :team_page
-  end
 end
 
 get "/players" do
